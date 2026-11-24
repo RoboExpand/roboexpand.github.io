@@ -1,102 +1,106 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="RoboExpand — A Real2Sim2Real Data Engine with Agentic Reconstruction and Multi-View Video Generation. Project page coming soon.">
-    <meta name="theme-color" content="#f7f8fa">
-    <title>RoboExpand</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: #172c43;
-        background: #f7f8fa;
-        font-synthesis: none;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoboExpand: A Real2Sim2Real Data Engine with Agentic Reconstruction and Multi-View Video Generation. From a single real demonstration to diverse robot training data.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="RoboExpand — A Real2Sim2Real Data Engine">
+  <meta property="og:description" content="Expand one real-robot demonstration into diverse trajectories and realistic, synchronized multi-view observations.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://roboexpand.github.io/assets/figures/teaser.webp">
+  <title>RoboExpand | A Real2Sim2Real Data Engine</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="nav-inner">
+    <a class="wordmark" href="#top" aria-label="RoboExpand home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 28 10v12l-12 7L4 22V10Z"/><path d="m4 10 12 7 12-7M16 17v12M10 7l12 7v5"/></svg>Robo<span>Expand</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="project-nav">Menu <span aria-hidden="true">☰</span></button>
+    <nav id="project-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#reconstruction">Reconstruction</a><a href="#generalization">Generalization</a><a href="#transfer">Transfer</a><a href="#real-world">Real-world</a><a href="#citation">Citation</a></nav>
+  </div></header>
+  <main id="main">
+    <section class="project-hero container" id="top" aria-labelledby="paper-title">
 
-      * {
-        box-sizing: border-box;
-      }
+      <h1 id="paper-title">Robo<span>Expand</span></h1>
+      <p class="paper-subtitle">A Real2Sim2Real Data Engine with Agentic<br class="desktop-break"> Reconstruction and Multi-View Video Generation</p>
+      <div class="authors" aria-label="Authors"><span>Yifan Luo<sup>1,3,*</sup></span><span>Xin Wu<sup>2,3,*</sup></span><span>Xiancong Ren<sup>3,†</sup></span><span>Chenhui Deng<sup>3,4</sup></span><span>Huimin Ma<sup>3</sup></span><span>Jianxin Sun<sup>3</sup></span><span>Yifan Sun<sup>3,5</sup></span><span>Qinfan Zhang<sup>3,4</sup></span><span>Han Dong<sup>3</sup></span><span>Jin Xu<sup>3</sup></span><span>Zhiheng Liu<sup>3</sup></span><span>Chen Sun<sup>2</sup></span><span>Yong Dai<sup>3</sup></span><span>Bing Su<sup>1,‡</sup></span><span>Xiaozhu Ju<sup>3,‡</sup></span></div>
+      <div class="affiliations"><span><sup>1</sup> Renmin University of China</span><span><sup>2</sup> The University of Hong Kong</span><span><sup>3</sup> Beijing Innovation Center of Humanoid Robotics</span><span><sup>4</sup> Beihang University</span><span><sup>5</sup> China University of Mining &amp; Technology, Beijing</span></div>
+      <p class="author-notes">* Equal contribution <span>† Project leader</span> <span>‡ Corresponding authors</span></p>
+      <div class="institution-logos" aria-label="Participating institutions"><img class="ruc-logo" src="assets/logos/ruc.png" alt="Renmin University of China" width="240" height="48"><img src="assets/logos/hku.png" alt="The University of Hong Kong" width="179" height="50"><img src="assets/logos/x-human.png" alt="Beijing Innovation Center of Humanoid Robotics" width="201" height="50"></div>
+      <div class="project-links">
+        <a class="resource-link primary" href="#" data-resource="arxiv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>arXiv <span class="soon">Soon</span></a>
+        <a class="resource-link" href="https://github.com/RoboExpand/RoboExpand" data-resource="code" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg>GitHub Code</a>
+        <a class="resource-link" href="#" data-resource="model"><span class="hf-icon" aria-hidden="true">🤗</span>Hugging Face <span class="soon">Soon</span></a>
+      </div>
+    </section>
 
-      body {
-        min-width: 280px;
-        min-height: 100vh;
-        min-height: 100svh;
-        margin: 0;
-        display: grid;
-        place-items: center;
-        padding: 64px 24px;
-        background: radial-gradient(ellipse at 50% 15%, #eaf0f7 0%, transparent 60%);
-      }
+    <section class="overview container" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading centered"><h2 id="overview-title">Overview</h2><p>RoboExpand turns a single real-robot demonstration into diverse trajectories and realistic multi-view videos, preserving aligned actions and states for real-world policy learning.</p></div>
+      <figure class="paper-figure teaser-figure"><button class="zoom-figure" data-image="assets/figures/teaser.webp" data-caption="From a single real demonstration to diverse robot training data." aria-label="Enlarge the RoboExpand teaser"><img src="assets/figures/teaser.webp" width="2400" height="1078" alt="One real demonstration is reconstructed in simulation, expanded into different trajectories, and transferred into visually diverse multi-view videos." fetchpriority="high"></button></figure>
+      <h3 class="subsection-title">Task Demos</h3>
+      <div class="carousel" data-carousel="demo" role="region" aria-roledescription="carousel" aria-label="Task demo" tabindex="0">
+        <div class="carousel-heading"><h3 id="demo-case-title">Lemon placement · Astribot</h3><span class="slide-count" id="demo-count" aria-live="polite">1 / 4</span></div>
+        <div class="carousel-stage">
+          <button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous task demo"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button>
+          <figure class="video-figure"><div class="video-shell"><video id="demo-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/demo-lemon.jpg" data-src="assets/web/demo-lemon.mp4" aria-label="Lemon placement · Astribot"></video></div><figcaption id="demo-caption">From a real demonstration to reconstructed scenes, expanded trajectories, and transferred video.</figcaption></figure>
+          <button type="button" class="carousel-arrow" data-direction="1" aria-label="Next task demo"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
+        </div>
+      </div>
+    </section>
 
-      main {
-        width: 100%;
-        max-width: 760px;
-        text-align: center;
-      }
+    <section class="abstract-section band" id="abstract" aria-labelledby="abstract-title"><div class="container narrow"><h2 id="abstract-title">Abstract</h2><p>Collecting real-robot demonstrations across varied layouts and visual conditions is costly. Simulation can broaden this coverage, but discrepancies in geometry, contact dynamics, and appearance often hinder sim-to-real policy transfer. We introduce <strong>RoboExpand</strong>, an agentic Real2Sim2Real data engine that expands a single real-robot demonstration into diverse action trajectories and visual observations for policy learning. A reconstruction agent first replays the recorded actions and uses discrepancies in contact and object motion to refine the scene’s geometry and physics. A trajectory generalization agent then adapts the demonstrated motion to new object layouts by planning paths that account for the new object positions. For each successful trajectory, the engine’s learned multi-view transfer model finally generates synchronized videos under different visual conditions, preserving alignment with the trajectory’s actions and states. Across four tasks on three real robot platforms, with 80 demonstrations per task, policies trained on RoboExpand-generated data achieved <strong>72.5% average success rate</strong>, up from 40.0% with raw simulator renderings and close to the 75.0% achieved with real demonstrations. In two additional Astribot task generalization experiments, policies trained on synthetic data covering the five tested visual conditions achieved <strong>68.0% average success rate</strong>, compared with 39.0% for policies trained on real demonstrations from the default scene.</p></div></section>
 
-      main::before {
-        content: "";
-        display: block;
-        width: 48px;
-        height: 4px;
-        margin: 0 auto 36px;
-        border-radius: 2px;
-        background: #557b9f;
-      }
+    <section class="container section" id="method" aria-labelledby="method-title"><div class="section-heading"><h2 id="method-title">Method</h2></div>
+      <figure class="paper-figure"><button class="zoom-figure" data-image="assets/figures/method.webp" data-caption="RoboExpand: the complete Real2Sim2Real data engine." aria-label="Enlarge the method diagram"><img src="assets/figures/method.webp" width="2800" height="1396" loading="lazy" alt="One real episode, reconstruction agent with action replay feedback, generalization agent with motion segmentation and layout sampling, and realistic output episodes."></button><figcaption>From one recorded episode to expanded trajectories and realistic multi-view observations.</figcaption></figure>
+      <div class="method-steps">
+        <article><h3>Reconstruction Agent</h3><p>Starting from one demonstration and the robot’s URDF, the agent calibrates the cameras and reconstructs object geometry, materials, and scene layout. It then adds collision models and physical parameters, replays the recorded actions, and compares simulated contact and object motion with the demonstration. Discrepancies guide targeted revisions until the scene reproduces the task’s key interactions.</p></article>
+        <article><h3>Generalization Agent</h3><p>The agent divides the reference motion into stages such as grasping, transport, and release, then samples new object layouts. It adapts object-relative targets, reuses motion segments that remain valid, and invokes cuRobo to replan affected segments. Successful simulation rollouts provide synchronized RGB-D observations together with the corresponding robot actions and scene states.</p></article>
+        <article><h3>Multi-view Video Transfer</h3><p>Simulated depth preserves the trajectory’s motion and scene structure, while per-camera reference images and a shared caption control appearance. Cross-view residual blocks exchange features between the head and wrist cameras to generate consistent observations. History-conditioned continuation extends generation to longer rollouts, retaining alignment with the original simulation actions and states.</p></article>
+      </div>
+    </section>
 
-      h1 {
-        margin: 0;
-        font-size: clamp(44px, 9vw, 88px);
-        line-height: 1.08;
-        font-weight: 650;
-        letter-spacing: -0.055em;
-      }
+    <section class="container section" id="reconstruction" aria-labelledby="reconstruction-title"><div class="section-heading"><h2 id="reconstruction-title">Reconstruction</h2><p>Recover task-relevant geometry and physical properties, then refine them through action replay.</p></div>
+      <div class="reconstruction-layout"><figure class="paper-figure"><button class="zoom-figure" data-image="assets/figures/reconstruction.webp" data-caption="Representative reconstructed assets: rigid, articulated, and deformable objects." aria-label="Enlarge reconstructed object examples"><img src="assets/figures/reconstruction.webp" width="1800" height="1350" loading="lazy" alt="Reconstructed drawer, box, cup stand, containers, blocks, headphones, dishes, fruit, garment, pillow, and tools."></button></figure><div class="reconstruction-copy"><h3>Interaction-grounded assets</h3><p>The reconstruction agent checks how objects respond to the robot, using contact and motion discrepancies to guide scene revisions.</p><dl><div><dt>Rigid objects</dt><dd>Geometry, pose, and appearance</dd></div><div><dt>Articulated objects</dt><dd>Joint structure and interactive motion</dd></div><div><dt>Deformable objects</dt><dd>Task-relevant shape and physical behavior</dd></div></dl></div></div>
+    </section>
 
-      .subtitle {
-        max-width: 670px;
-        margin: 28px auto 0;
-        font-size: clamp(18px, 2.5vw, 24px);
-        line-height: 1.55;
-        font-weight: 400;
-        color: #41566c;
-        text-wrap: balance;
-      }
+    <section class="band" id="generalization" aria-labelledby="generalization-title"><div class="container section"><div class="section-heading heading-with-stat"><div><h2 id="generalization-title">Generalization</h2><p>Adapt a demonstrated skill across sampled object placements.</p></div><div class="inline-stat"><strong>93.8<span>%</span></strong><span>planning success · 720 / 768 layouts</span></div></div><figure class="paper-figure generation-figure"><button class="zoom-figure" data-image="assets/figures/generation.webp" data-caption="Planning outcomes on nine tasks. Green dots indicate successful plans; crosses indicate failures." aria-label="Enlarge trajectory generalization results"><img src="assets/figures/generation.webp" width="2400" height="1564" loading="lazy" alt="Nine task examples with sampled layouts, planning successes and failures, and task-level success rates."></button><figcaption>Nine manipulation tasks with varied object layouts. The pooled rate measures planning success before execution checks.</figcaption></figure></div></section>
 
-      .status {
-        margin: 52px 0 0;
-        font-size: 15px;
-        line-height: 1.6;
-        color: #637283;
-      }
+    <section class="container section" id="transfer" aria-labelledby="transfer-title">
+      <div class="section-heading"><h2 id="transfer-title">Transfer</h2><p>Multi-view video transfer on paired real-robot recordings and open scenes.</p></div>
+      <div class="carousel" data-carousel="transfer" role="region" aria-roledescription="carousel" aria-label="Transfer example" tabindex="0">
+        <div class="carousel-heading"><h3 id="transfer-case-title">Paired · AgileX</h3><span class="slide-count" id="transfer-count" aria-live="polite">1 / 6</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous transfer example"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="transfer-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/paired-agilex.jpg" data-src="assets/paired-test-set-cases/C01_agilex_comparison.mp4" aria-label="Paired · AgileX"></video></div><figcaption id="transfer-caption">Generated video, input depth, and ground truth across three cameras.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next transfer example"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div>
+    </section>
 
-      @media (max-width: 480px) {
-        body {
-          padding: 48px 24px;
-        }
+    <section class="container section" id="real-world" aria-labelledby="real-world-title"><div class="section-heading"><h2 id="real-world-title">Real-world Experiments</h2><p>Fine-tune π<sub>0.5</sub> on generated data and evaluate on physical robots.</p></div>
+      <figure class="paper-figure"><button class="zoom-figure" data-image="assets/figures/real-world.webp" data-caption="Real-world policy performance and visual generalization." aria-label="Enlarge real-world experiment results"><img src="assets/figures/real-world.webp" width="2600" height="1123" loading="lazy" alt="Real-robot task success by training source and visual generalization results under red, green, and blue lighting, changed background, and clutter."></button><figcaption>80 training demonstrations per task; 10 physical evaluation rollouts per task, source, and condition. Real-data policies reach 75.0% average success in default scenes.</figcaption></figure>
+      <div class="generated-gallery"><h3 class="subsection-title">RoboExpand-Generated Datasets</h3><p class="gallery-intro">Generated training observations across tasks and visual conditions.</p><div class="carousel" data-carousel="generated" role="region" aria-roledescription="carousel" aria-label="Generated dataset example" tabindex="0">
+        <div class="carousel-heading"><h3 id="generated-case-title">Lemon placement · Default scene</h3><span class="slide-count" id="generated-count" aria-live="polite">1 / 11</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous generated dataset example"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="generated-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/dataset-lemon-default-generated_three_views.jpg" data-src="assets/roboexpand-generated-datasets-cases/07_lemon_ep00/generated_three_views.mp4" aria-label="Lemon placement · Default scene"></video></div><figcaption id="generated-caption">Synchronized head, left-wrist, and right-wrist observations paired with simulation actions and states.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next generated dataset example"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div></div>
+      <div class="rollout-gallery"><h3 class="subsection-title">Successful Real-world Rollouts</h3><p class="gallery-intro">Policies trained on RoboExpand-generated data, with one successful trial for each available scene.</p><div class="rollout-grid"><article class="task-rollouts"><div class="task-heading"><h3>Lemon Placement</h3><span>Astribot</span></div><div class="carousel" data-carousel="rollout-lemon" role="region" aria-roledescription="carousel" aria-label="Lemon Placement scene" tabindex="0">
+        <div class="carousel-heading"><h3 id="rollout-lemon-case-title">Default scene</h3><span class="slide-count" id="rollout-lemon-count" aria-live="polite">1 / 6</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous lemon placement scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="rollout-lemon-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/rollout-lemon-default.jpg" data-src="assets/web/rollout-lemon-default.mp4" aria-label="Default scene"></video></div><figcaption id="rollout-lemon-caption">Pick up the lemon and place it inside the target tray.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next lemon placement scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div></article><article class="task-rollouts"><div class="task-heading"><h3>Cup Handover</h3><span>Astribot</span></div><div class="carousel" data-carousel="rollout-cup" role="region" aria-roledescription="carousel" aria-label="Cup Handover scene" tabindex="0">
+        <div class="carousel-heading"><h3 id="rollout-cup-case-title">Default scene</h3><span class="slide-count" id="rollout-cup-count" aria-live="polite">1 / 8</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous cup handover scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="rollout-cup-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/rollout-cup-default.jpg" data-src="assets/web/rollout-cup-default.mp4" aria-label="Default scene"></video></div><figcaption id="rollout-cup-caption">Transfer the cup between arms and rehang it on the other side of the stand.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next cup handover scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div></article><article class="task-rollouts"><div class="task-heading"><h3>Drawer Loading</h3><span>AgileX</span></div><div class="carousel" data-carousel="rollout-drawer" role="region" aria-roledescription="carousel" aria-label="Drawer Loading scene" tabindex="0">
+        <div class="carousel-heading"><h3 id="rollout-drawer-case-title">Default scene</h3><span class="slide-count" id="rollout-drawer-count" aria-live="polite">1 / 1</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous drawer loading scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="rollout-drawer-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/rollout-drawer-default.jpg" data-src="assets/web/rollout-drawer-default.mp4" aria-label="Default scene"></video></div><figcaption id="rollout-drawer-caption">Open the drawer, place the object inside, and close it.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next drawer loading scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div></article><article class="task-rollouts"><div class="task-heading"><h3>Corn Placement</h3><span>Tienyi 2.0</span></div><div class="carousel" data-carousel="rollout-corn" role="region" aria-roledescription="carousel" aria-label="Corn Placement scene" tabindex="0">
+        <div class="carousel-heading"><h3 id="rollout-corn-case-title">Default scene</h3><span class="slide-count" id="rollout-corn-count" aria-live="polite">1 / 1</span></div>
+        <div class="carousel-stage"><button type="button" class="carousel-arrow" data-direction="-1" aria-label="Previous corn placement scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button><figure class="video-figure"><div class="video-shell"><video id="rollout-corn-video" controls autoplay muted playsinline loop preload="none" poster="assets/posters/rollout-corn-default.jpg" data-src="assets/web/rollout-corn-default.mp4" aria-label="Default scene"></video></div><figcaption id="rollout-corn-caption">Grasp the corn and place it inside the target basket.</figcaption></figure><button type="button" class="carousel-arrow" data-direction="1" aria-label="Next corn placement scene"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button></div>
+      </div></article></div></div>
+    </section>
 
-        main::before {
-          margin-bottom: 28px;
-        }
-
-        .subtitle {
-          margin-top: 22px;
-        }
-
-        .status {
-          margin-top: 40px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>RoboExpand</h1>
-      <p class="subtitle">A Real2Sim2Real Data Engine with Agentic Reconstruction and Multi-View Video Generation</p>
-      <p class="status">Project page coming soon.</p>
-    </main>
-  </body>
+    <section class="citation-section band" id="citation" aria-labelledby="citation-title"><div class="container"><h2 id="citation-title">Citation</h2><p class="citation-placeholder">BibTeX will be added after the arXiv release.</p></div></section>
+  </main>
+  <footer class="container"><a class="wordmark" href="#top">Robo<span>Expand</span></a><a href="#top">Back to top</a></footer>
+  <dialog id="figure-dialog" aria-label="Expanded project figure"><div class="dialog-toolbar"><p id="figure-caption"></p><button type="button" id="close-figure" aria-label="Close enlarged figure">Close <span aria-hidden="true">×</span></button></div><img id="expanded-figure" alt=""></dialog>
+  <div id="notification" role="status" aria-live="polite"></div>
+</body>
 </html>
