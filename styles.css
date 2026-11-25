@@ -58,9 +58,7 @@ h1 span { color: var(--accent); }
 .affiliations sup { margin-right: 3px; color: var(--accent); }
 .author-notes { font-size: 14px; color: #35434f; margin-top: 13px; }
 .author-notes span { margin-left: 18px; }
-.institution-logos { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 32px 0; }
-.institution-logos img { object-fit: contain; height: 48px; width: auto; }
-.project-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.project-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 .resource-link { display: inline-flex; align-items: center; gap: 10px; padding: 11px 17px; border: 1px solid #ced9e2; border-radius: 7px; font-size: 16px; font-weight: 600; background: #fff; }
 .resource-link svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
 .resource-link.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
@@ -171,8 +169,6 @@ body:has(dialog[open]) { overflow: hidden; }
   nav a[aria-current="location"]::after { bottom: 0; }
   h1 { font-size: 64px; letter-spacing: -3px; }
   .desktop-break { display: none; }
-  .institution-logos { gap: 20px; }
-  .institution-logos img { max-width: 31%; height: auto; max-height: 48px; }
   .method-steps article, .reconstruction-layout { grid-template-columns: 1fr; gap: 18px; }
   .method-steps, .rollout-grid { grid-template-columns: 1fr; }
   .heading-with-stat, .evaluation-heading { flex-wrap: wrap; }
