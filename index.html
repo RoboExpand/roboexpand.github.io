@@ -22,24 +22,70 @@
     <nav id="project-nav" aria-label="Project sections"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#reconstruction">Reconstruction</a><a href="#generalization">Generalization</a><a href="#transfer">Transfer</a><a href="#real-world">Real-world</a><a href="#citation">Citation</a></nav>
   </div></header>
   <main id="main">
-    <section class="project-hero container" id="top" aria-labelledby="paper-title">
-
-      <h1 id="paper-title">Robo<span>Expand</span></h1>
-      <p class="paper-subtitle">A Real2Sim2Real Data Engine with Agentic<br class="desktop-break"> Reconstruction and Multi-View Video Generation</p>
-      <div class="authors" aria-label="Authors"><span>Yifan Luo<sup>1,3,*</sup></span><span>Xin Wu<sup>2,3,*</sup></span><span>Xiancong Ren<sup>3,†</sup></span><span>Chenhui Deng<sup>3,4</sup></span><span>Huimin Ma<sup>3</sup></span><span>Jianxin Sun<sup>3</sup></span><span>Yifan Sun<sup>3,5</sup></span><span>Qinfan Zhang<sup>3,4</sup></span><span>Han Dong<sup>3</sup></span><span>Jin Xu<sup>3</sup></span><span>Zhiheng Liu<sup>3</sup></span><span>Chen Sun<sup>2</sup></span><span>Yong Dai<sup>3</sup></span><span>Bing Su<sup>1,‡</sup></span><span>Xiaozhu Ju<sup>3,‡</sup></span></div>
-      <div class="affiliations"><span><sup>1</sup> Renmin University of China</span><span><sup>2</sup> The University of Hong Kong</span><span><sup>3</sup> Beijing Innovation Center of Humanoid Robotics</span><span><sup>4</sup> Beihang University</span><span><sup>5</sup> China University of Mining &amp; Technology, Beijing</span></div>
-      <p class="author-notes">* Equal contribution <span>† Project leader</span> <span>‡ Corresponding authors</span></p>
-      <div class="project-links">
-        <a class="resource-link primary" href="#" data-resource="arxiv"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>arXiv <span class="soon">Soon</span></a>
-        <a class="resource-link" href="https://github.com/RoboExpand/RoboExpand" data-resource="code" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16"/></svg>GitHub Code</a>
-        <a class="resource-link" href="#" data-resource="model"><span class="hf-icon" aria-hidden="true">🤗</span>Hugging Face <span class="soon">Soon</span></a>
+    <section class="project-hero" id="top" aria-labelledby="paper-title">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <h1 id="paper-title">Robo<span>Expand</span></h1>
+          <p class="paper-subtitle">A Real2Sim2Real Data Engine with <span>Agentic Reconstruction</span> and <span>Multi-View Video Generation</span></p>
+          <div class="authors" aria-label="Authors">
+            <span>Yifan Luo<sup>1,3,*</sup></span>
+            <span>Xin Wu<sup>2,3,*</sup></span>
+            <span>Xiancong Ren<sup>3,†</sup></span>
+            <span>Chenhui Deng<sup>3,4</sup></span>
+            <span>Huimin Ma<sup>3</sup></span>
+            <span>Jianxin Sun<sup>3</sup></span>
+            <span>Yifan Sun<sup>3,5</sup></span>
+            <span>Qinfan Zhang<sup>3,4</sup></span>
+            <span>Han Dong<sup>3</sup></span>
+            <span>Jin Xu<sup>3</sup></span>
+            <span>Zhiheng Liu<sup>3</sup></span>
+            <span>Chen Sun<sup>2</sup></span>
+            <span>Yong Dai<sup>3</sup></span>
+            <span>Bing Su<sup>1,‡</sup></span>
+            <span>Xiaozhu Ju<sup>3,‡</sup></span>
+          </div>
+          <div class="affiliations">
+            <div class="affiliation-row"><span><sup>1</sup> Renmin University of China</span><span><sup>2</sup> The University of Hong Kong</span><span><sup>3</sup> Beijing Innovation Center of Humanoid Robotics</span></div>
+            <div class="affiliation-row"><span><sup>4</sup> Beihang University</span><span><sup>5</sup> China University of Mining &amp; Technology, Beijing</span></div>
+          </div>
+          <p class="author-notes">* Equal contribution <span>† Project leader</span> <span>‡ Corresponding authors</span></p>
+          <div class="project-links">
+            <a class="resource-link primary" href="https://github.com/RoboExpand/RoboExpand" data-resource="code" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 018 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8Z"/></svg>
+              GitHub
+            </a>
+            <a class="resource-link" href="#" data-resource="arxiv"><img src="assets/logos/arxiv.svg" width="18" height="18" alt=""> arXiv <span class="soon">Soon</span></a>
+            <a class="resource-link" href="#" data-resource="model"><img src="assets/logos/hugging-face.svg" width="18" height="18" alt=""> Hugging Face <span class="soon">Soon</span></a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="hero-backdrop">
+            <video id="task-backdrop" muted playsinline loop preload="none"
+                   poster="assets/hero/task-spaced.webp"
+                   aria-label="Lemon placement, cup handover, drawer loading, and corn placement playing together at four times normal speed">
+              <source src="assets/hero/task-spaced-hd.mp4" media="(min-width: 1920px), (min-width: 951px) and (min-resolution: 1.5dppx)" type="video/mp4">
+              <source src="assets/hero/task-spaced.mp4" type="video/mp4">
+            </video>
+            <div class="task-grid-labels" aria-hidden="true">
+              <span>Lemon placement</span><span>Cup handover</span>
+              <span>Drawer loading</span><span>Corn placement</span>
+            </div>
+          </div>
+          <div class="hero-playback">
+            <a href="#task-demos">Task demos <span aria-hidden="true">↓</span></a>
+            <span class="reel-speed">4×</span>
+            <button type="button" id="toggle-backdrop" aria-label="Play background video" aria-controls="task-backdrop" hidden>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path class="play-icon" d="M6 3.5v13l10-6.5z"/><path class="pause-icon" d="M5 4h3.5v12H5zm6.5 0H15v12h-3.5z"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="overview container" id="overview" aria-labelledby="overview-title">
       <div class="section-heading centered"><h2 id="overview-title">Overview</h2><p>RoboExpand turns a single real-robot demonstration into diverse trajectories and realistic multi-view videos, preserving aligned actions and states for real-world policy learning.</p></div>
       <figure class="paper-figure teaser-figure"><button class="zoom-figure" data-image="assets/figures/teaser.webp" data-caption="From a single real demonstration to diverse robot training data." aria-label="Enlarge the RoboExpand teaser"><img src="assets/figures/teaser.webp" width="2400" height="1078" alt="One real demonstration is reconstructed in simulation, expanded into different trajectories, and transferred into visually diverse multi-view videos." fetchpriority="high"></button></figure>
-      <h3 class="subsection-title">Task Demos</h3>
+      <h3 class="subsection-title" id="task-demos">Task Demos</h3>
       <div class="carousel" data-carousel="demo" role="region" aria-roledescription="carousel" aria-label="Task demo" tabindex="0">
         <div class="carousel-heading"><h3 id="demo-case-title">Lemon placement · Astribot</h3><span class="slide-count" id="demo-count" aria-live="polite">1 / 4</span></div>
         <div class="carousel-stage">

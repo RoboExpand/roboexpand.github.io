@@ -212,17 +212,45 @@ $$('[data-resource]').forEach(link => {
 });
 
 const menu = $('.menu-toggle');
+const navInner = $('.nav-inner');
+const projectNav = $('#project-nav');
+const navBrand = navInner.querySelector('.wordmark');
+const navLinks = [...projectNav.querySelectorAll('a')];
+
 function closeMenu() {
   menu.setAttribute('aria-expanded', 'false');
-  $('#project-nav').classList.remove('is-open');
+  projectNav.classList.remove('is-open');
 }
+
+// Links retain their intrinsic widths when the compact menu wraps.
+function fitNavigation() {
+  const linksWidth = navLinks.reduce((width, link) => width + link.getBoundingClientRect().width, 0);
+  const linkGaps = (navLinks.length - 1) * parseFloat(getComputedStyle(projectNav).columnGap);
+  const fullWidth = navBrand.getBoundingClientRect().width + parseFloat(getComputedStyle(navInner).columnGap) + linksWidth + linkGaps;
+  const compact = fullWidth > navInner.getBoundingClientRect().width;
+  if (compact === navInner.classList.contains('is-compact')) return;
+
+  const moveFocus = compact && projectNav.contains(document.activeElement);
+  navInner.classList.toggle('is-compact', compact);
+  closeMenu();
+  if (moveFocus) menu.focus({ preventScroll: true });
+}
+
+const navSizeObserver = new ResizeObserver(fitNavigation);
+[navInner, navBrand, ...navLinks].forEach(element => navSizeObserver.observe(element));
+fitNavigation();
 menu.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
   menu.setAttribute('aria-expanded', String(open));
-  $('#project-nav').classList.toggle('is-open', open);
+  projectNav.classList.toggle('is-open', open);
 });
-$$('#project-nav a').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+navLinks.forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && projectNav.classList.contains('is-open')) {
+    closeMenu();
+    menu.focus({ preventScroll: true });
+  }
+});
 document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
 
 // Silent autoplay starts when a video enters the viewport and stops offscreen.
@@ -259,7 +287,7 @@ const videoObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: [0, 0.2] });
 
-$$('video').forEach(video => {
+$$('.video-shell video').forEach(video => {
   videoStates.set(video, { visible: false, userPaused: false });
   video.muted = true;
   video.defaultMuted = true;
@@ -293,6 +321,46 @@ $$('video').forEach(video => {
     if (video.error) { video.dataset.failed = 'true'; fallback.hidden = true; }
   });
   videoObserver.observe(video);
+});
+
+// The hero uses a pre-accelerated reel. Keep the original task players at normal speed.
+const backdrop = $('#task-backdrop');
+const backdropToggle = $('#toggle-backdrop');
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+let backdropEnabled = !motionPreference.matches;
+let backdropVisible = false;
+
+function updateBackdrop() {
+  if (backdropEnabled && backdropVisible && !document.hidden) {
+    backdrop.play().catch(error => {
+      if (error.name !== 'AbortError') backdropEnabled = false;
+    });
+  } else {
+    backdrop.pause();
+  }
+}
+
+function showBackdropState() {
+  backdropToggle.classList.toggle('is-playing', !backdrop.paused);
+  backdropToggle.setAttribute('aria-label', backdrop.paused ? 'Play background video' : 'Pause background video');
+}
+
+backdropToggle.hidden = false;
+backdropToggle.addEventListener('click', () => {
+  backdropEnabled = backdrop.paused;
+  updateBackdrop();
+});
+backdrop.addEventListener('play', showBackdropState);
+backdrop.addEventListener('pause', showBackdropState);
+backdrop.addEventListener('error', () => { backdropToggle.hidden = true; });
+new IntersectionObserver(([entry]) => {
+  backdropVisible = entry.isIntersecting;
+  updateBackdrop();
+}).observe(backdrop);
+document.addEventListener('visibilitychange', updateBackdrop);
+motionPreference.addEventListener('change', () => {
+  backdropEnabled = !motionPreference.matches;
+  updateBackdrop();
 });
 
 function switchVideo(video, source, poster, title) {
@@ -371,7 +439,7 @@ $$('[data-carousel]').forEach(region => {
 });
 
 document.addEventListener('visibilitychange', () => {
-  $$('video').forEach(video => { if (document.hidden) pauseVideo(video); else playVideo(video); });
+  $$('.video-shell video').forEach(video => { if (document.hidden) pauseVideo(video); else playVideo(video); });
 });
 
 const figureDialog = $('#figure-dialog');
